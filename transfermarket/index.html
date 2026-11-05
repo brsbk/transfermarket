@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransferZone — Футбольный рынок</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2 class="logo">⚽ Transfer<span>Zone</span></h2>
+
+    <nav>
+        <a href="#overview">▦ Обзор</a>
+        <a href="#transfers">⇄ Трансферы</a>
+        <a href="#leagues">▤ Турнирные таблицы</a>
+        <a href="#clubs">◉ Финансы клубов</a>
+        <a href="#assistant">✦ ИИ-помощник</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <span class="live-dot"></span> Football Center
+        <p>Сезон 2026/27</p>
+    </div>
+</div>
+
+<main>
+    <header>
+        <div>FOOTBALL / TRANSFER CENTER</div>
+        <div class="live">● DEMO DATA</div>
+    </header>
+
+    <section class="hero" id="overview">
+        <div>
+            <span class="eyebrow">FOOTBALL INTELLIGENCE</span>
+            <h1>Весь футбольный рынок.<br>
+                <span>В одном месте.</span>
+            </h1>
+            <p>Трансферы, статистика, результаты и финансы пяти сильнейших лиг Европы.</p>
+            <a href="#transfers" class="main-btn">Смотреть трансферы →</a>
+        </div>
+        <div class="football">⚽</div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <p>Трансферные расходы</p>
+            <h2>€ 1.84 млрд</h2>
+        </div>
+        <div class="stat-card">
+            <p>Доходы от продаж</p>
+            <h2>€ 1.21 млрд</h2>
+        </div>
+        <div class="stat-card">
+            <p>Чистый баланс</p>
+            <h2>−€ 630 млн</h2>
+        </div>
+        <div class="stat-card">
+            <p>Сезон</p>
+            <h2>2026/27</h2>
+        </div>
+    </section>
+
+    <section id="transfers" class="section">
+        <h2>Последние трансферы</h2>
+        <p class="description">Главные сделки футбольного рынка</p>
+
+        <div class="filters">
+            <button onclick="filterTransfers('all')">Все</button>
+            <button onclick="filterTransfers('confirmed')">Подтверждённые</button>
+            <button onclick="filterTransfers('rumour')">Слухи</button>
+            <input id="search" placeholder="Поиск игрока или клуба..." oninput="renderTransfers()">
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ИГРОК</th>
+                        <th>ИЗ КЛУБА</th>
+                        <th>В КЛУБ</th>
+                        <th>СТОИМОСТЬ</th>
+                        <th>СТАТУС</th>
+                    </tr>
+                </thead>
+                <tbody id="transferTable"></tbody>
+            </table>
+        </div>
+        <p class="note">Демонстрационные данные, не реальные новости.</p>
+    </section>
+
+    <section id="leagues" class="section">
+        <h2>Турнирные таблицы</h2>
+        <p class="description">Пять сильнейших европейских лиг</p>
+
+        <div class="league-tabs">
+            <button onclick="showLeague('PL')">🏴 АПЛ</button>
+            <button onclick="showLeague('PD')">🇪🇸 Ла Лига</button>
+            <button onclick="showLeague('BL1')">🇩🇪 Бундеслига</button>
+            <button onclick="showLeague('SA')">🇮🇹 Серия А</button>
+            <button onclick="showLeague('FL1')">🇫🇷 Лига 1</button>
+        </div>
+
+        <h3 id="leagueTitle">Английская Премьер-лига</h3>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>КЛУБ</th>
+                        <th>И</th>
+                        <th>В</th>
+                        <th>Н</th>
+                        <th>П</th>
+                        <th>ЗМ</th>
+                        <th>ПМ</th>
+                        <th>РМ</th>
+                        <th>ОЧКИ</th>
+                    </tr>
+                </thead>
+                <tbody id="leagueTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="clubs" class="section">
+        <h2>Финансы клубов</h2>
+        <p class="description">Расходы, продажи и трансферный баланс</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>КЛУБ</th>
+                        <th>ПОКУПКИ</th>
+                        <th>ПРОДАЖИ</th>
+                        <th>БАЛАНС</th>
+                    </tr>
+                </thead>
+                <tbody id="financeTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="assistant" class="section ai-section">
+        <div>
+            <span class="eyebrow">TRANSFERZONE AI</span>
+            <h2>Твой футбольный аналитик.</h2>
+            <p class="description">
+                Задавай вопросы о трансферах, стоимости игроков,
+                клубах, тактике и футбольном рынке.
+            </p>
+        </div>
+
+        <div class="chat-box">
+            <div id="messages" class="messages">
+                <div class="bot-message">
+                    Привет! Я TransferZone AI.
+                    Чем могу помочь с футбольным рынком?
+                </div>
+            </div>
+
+            <form id="chatForm">
+                <input id="chatInput" placeholder="Напиши вопрос о футболе..." required>
+                <button type="submit">↑</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <h3>TransferZone</h3>
+        <p>Football data in one place. © 2026</p>
+    </footer>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
